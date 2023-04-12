@@ -2,10 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { withApiSession } from "../../lib/withSession";
 import prisma from "../../lib/db";
 
-async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<ResponseType>
-) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     session: { user },
   } = req;
