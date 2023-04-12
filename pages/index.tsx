@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import useSWR from "swr";
 import { Tweet } from "@prisma/client";
+import Link from "next/link";
 
 interface TweetsResponse {
   ok: boolean;
@@ -26,8 +27,9 @@ export default () => {
     <div>
       {data?.tweets?.map((tweet) => (
         <div key={tweet.id}>
-          <div>{tweet.title}</div>
-          <div>{tweet.description}</div>
+          <Link href={`/tweet/${tweet.id}`}>
+            <div>{tweet.title}</div>
+          </Link>
         </div>
       ))}
     </div>
