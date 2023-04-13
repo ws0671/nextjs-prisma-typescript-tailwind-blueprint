@@ -12,8 +12,13 @@ interface TweetsResponse {
 export default () => {
   const router = useRouter();
   const { data, error } = useSWR<TweetsResponse>("/api/tweet");
-
-  console.log(data);
+  const onLogout = async () => {
+    await fetch("/api/logout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
+    router.replace("/log-in");
+  };
 
   useEffect(() => {
     if (error) {
@@ -24,14 +29,45 @@ export default () => {
     return <div />;
   }
   return (
-    <div>
-      {data?.tweets?.map((tweet) => (
-        <div key={tweet.id}>
-          <Link href={`/tweet/${tweet.id}`}>
-            <div>{tweet.title}</div>
-          </Link>
+    <div className="relative">
+      <h1 className="mt-10">
+        <span
+          className="cursor-pointer font-bold text-red-500"
+          onClick={onLogout}
+        >
+          LOGOUT
+        </span>
+      </h1>
+      <div className="mt-10 space-y-2">
+        {data?.tweets?.map((tweet) => (
+          <div
+            key={tweet.id}
+            className="cursor-pointer border-black border rounded p-5"
+          >
+            <Link href={`/tweet/${tweet.id}`}>
+              <div className="font-bold text-xl">{tweet.title}</div>
+            </Link>
+          </div>
+        ))}
+      </div>
+      <Link href={"/tweet/upload"}>
+        <div className="fixed right-60 bottom-10 rounded-full text-white cursor-pointer flex justify-center items-center bg-orange-400 w-12 h-12">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 4.5v15m7.5-7.5h-15"
+            />
+          </svg>
         </div>
-      ))}
+      </Link>
     </div>
   );
 };

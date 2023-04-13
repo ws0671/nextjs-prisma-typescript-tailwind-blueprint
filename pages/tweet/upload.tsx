@@ -25,18 +25,26 @@ export default function TweetUpload() {
     }
   };
   return (
-    <form onSubmit={handleSubmit(onValid)}>
-      <input
-        {...register("title", { required: true })}
-        type="text"
-        placeholder="Title"
-      />
-      <input
-        {...register("description", { required: true })}
-        type="text"
-        placeholder="Description"
-      />
-      <input type="submit" value="Upload Tweet" />
-    </form>
+    <div className="mt-20">
+      <form className="flex flex-col" onSubmit={handleSubmit(onValid)}>
+        <input
+          className="py-4 focus:outline-none"
+          {...register("title", { required: true })}
+          type="text"
+          placeholder="Title"
+        />
+        <input
+          className="py-4 focus:outline-none"
+          {...register("description", { required: true })}
+          type="text"
+          placeholder="Description"
+        />
+        <input
+          className="bg-blue-400 py-4 rounded-xl text-white text-lg cursor-pointer"
+          type="submit"
+          value="Upload Tweet"
+        />
+      </form>
+    </div>
   );
 }

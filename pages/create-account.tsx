@@ -26,23 +26,32 @@ export default function CreateAccount() {
     }
   };
   return (
-    <form onSubmit={handleSubmit(onValid)}>
-      <input
-        {...register("username", { required: true })}
-        type="text"
-        placeholder="Username"
-      />
-      <input
-        {...register("email", { required: true })}
-        type="email"
-        placeholder="Email"
-      />
-      <input
-        {...register("password", { required: true, minLength: 5 })}
-        type="password"
-        placeholder="password"
-      />
-      <input type="submit" value="Create Account" />
-    </form>
+    <div className="mt-20">
+      <form className="flex flex-col" onSubmit={handleSubmit(onValid)}>
+        <input
+          className="py-4 focus:outline-none"
+          {...register("username", { required: true })}
+          type="text"
+          placeholder="Username"
+        />
+        <input
+          className="py-4 focus:outline-none"
+          {...register("email", { required: true })}
+          type="email"
+          placeholder="Email"
+        />
+        <input
+          className="py-4 focus:outline-none"
+          {...register("password", { required: true, minLength: 5 })}
+          type="password"
+          placeholder="password"
+        />
+        <input
+          type="submit"
+          value="Create Account"
+          className="bg-orange-400 py-4 rounded-xl text-white text-lg cursor-pointer"
+        />
+      </form>
+    </div>
   );
 }
