@@ -40,14 +40,14 @@ export default () => {
       </h1>
       <div className="mt-10 space-y-2">
         {data?.tweets?.map((tweet) => (
-          <div
-            key={tweet.id}
-            className="cursor-pointer border-black border rounded p-5"
-          >
-            <Link href={`/tweet/${tweet.id}`}>
+          <Link href={`/tweet/${tweet.id}`}>
+            <div
+              key={tweet.id}
+              className="cursor-pointer border-black border rounded p-5"
+            >
               <div className="font-bold text-xl">{tweet.title}</div>
-            </Link>
-          </div>
+            </div>
+          </Link>
         ))}
       </div>
       <Link href={"/tweet/upload"}>
